@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css';
-import myshopLogo from './assets/amazon.png';
+import myshopLogo from './assets/My-shop.png';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
