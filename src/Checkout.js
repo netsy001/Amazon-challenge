@@ -1,6 +1,7 @@
 import React from 'react'
 import Offer from '../src/assets/offer1.jpg';
 import './Checkout.css';
+import Subtotal from './Subtotal';
 
 const Checkout = () => {
     return (
@@ -17,7 +18,7 @@ const Checkout = () => {
             </div>
 
             <div className="checkout__right">
-                <h2>Checkout checkout</h2>
+                <Subtotal />
             </div>
         </div>
     )
