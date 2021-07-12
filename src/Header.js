@@ -9,7 +9,7 @@ import { useStateValue } from './StateProvider';
 
 function Header() {
 
-    const [state, dispatch] = useStateValue();
+    const [{ basket }, dispatch] = useStateValue();
 
     return (
         <div className='header'>
