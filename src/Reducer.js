@@ -1,8 +1,11 @@
 // create initial state i.e initially we are starting the with empty basket
-
 export const initialState = {
     basket: [],
 };
+
+//Selector using the reducer function method to calculate the price of all products added to cart.
+
+export const getBasketTotal = (basket) => basket?.reduce((amount, item) => item.price + amount, 0);
 
 
 const reducer = (state, action) => {
