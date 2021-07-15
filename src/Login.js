@@ -11,6 +11,12 @@ const Login = () => {
 
     const signIn = e => {
         e.preventDefault();
+        auth.signInWithEmailAndPassword(email, password).then(auth => {
+            if (auth) {
+                history.push('/');
+            }
+        })
+            .catch(err => alert(err.message))
     }
 
     const register = e => {
@@ -20,7 +26,9 @@ const Login = () => {
             console.log(auth);
             //useHistory. Provides access to the history prop in React Router. Refers to the history package dependency that the router uses. A primary use case would be for programmatic routing with functions, like push , replace , etc.
             // Here after successfull registeration we are pushing to home page
-            history.push('/');
+            if (auth) {
+                history.push('/');
+            }
         })
             .catch(error => alert(error.message))
     }
