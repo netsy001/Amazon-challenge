@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import "./Login.css"
 import myshopLogo from './assets/My-shop.png';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { auth } from "./firebase";
 
 const Login = () => {
-
+    const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -14,7 +15,14 @@ const Login = () => {
 
     const register = e => {
         e.preventDefault();
-
+        // it creates an user with email and password and then if everything was good it comes back to auth object
+        auth.createUserWithEmailAndPassword(email, password).then((auth) => {
+            console.log(auth);
+            //useHistory. Provides access to the history prop in React Router. Refers to the history package dependency that the router uses. A primary use case would be for programmatic routing with functions, like push , replace , etc.
+            // Here after successfull registeration we are pushing to home page
+            history.push('/');
+        })
+            .catch(error => alert(error.message))
     }
 
     return (
