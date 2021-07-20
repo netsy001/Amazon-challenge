@@ -7,7 +7,7 @@ import { useStateValue } from './StateProvider';
 
 const Checkout = () => {
 
-    const [{ basket }, dispatch] = useStateValue();
+    const [{ basket, user }, dispatch] = useStateValue();
 
     return (
         <div className="checkout">
@@ -15,6 +15,8 @@ const Checkout = () => {
                 <div className="checkout__left">
                     <img className="checkout__banner" src={Offer} alt="exclusive-offer" />
                     <div>
+                        {/* //option chaining ?. if we get any type error email of null. Optional chaining  adding ? will help to fix the error */}
+                        <h3>Hello, {user?.email}</h3>
                         <h2 className="checkout__title">
                             {basket.map(item => <CheckoutProduct
                                 id={item.id}
