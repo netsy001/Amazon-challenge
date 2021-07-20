@@ -30,9 +30,10 @@ function Header() {
             </div>
 
             <div className="header__nav">
+                {/* //if redirect to login page if there is no user only then push to login page */}
                 <Link to={!user && "/login"} >
                     <div onClick={handleAuthentication} className="header__option">
-                        <span className='header__optionLineOne'>Hello Guest</span>
+                        <span className='header__optionLineOne'>{user?.email}</span>
                         <span className='header__optionLineTwo'>{user ? 'Sign Out' : 'Sign In'}</span>
                     </div>
                 </Link>
@@ -44,7 +45,7 @@ function Header() {
                 </div>
                 <div className="header__option">
                     <span className='header__optionLineOne'>Your</span>
-                    <span className='header__optionLineTwo'>Prime</span>
+                    <span className='header__optionLineTwo'>Shop</span>
 
                 </div>
 
