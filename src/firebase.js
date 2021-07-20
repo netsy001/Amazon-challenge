@@ -23,5 +23,5 @@ const db = firebaseApp.firestore();
 //this will give us a variable to handle for all signing in
 const auth = firebase.auth();
 
-//to use db auth we are exporting to use outside of the file
+//to use db, auth we are exporting to use outside of the fire
 export { db, auth };
