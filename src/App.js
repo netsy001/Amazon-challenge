@@ -13,7 +13,7 @@ function App() {
   // createing a listener to always keep track off who is signed in
   //useEffect only run once when the app component loads...
   useEffect(() => {
-
+    //this lister onAuthStateChanged does all the work for login and logout from firebase
     auth.onAuthStateChanged(authUser => {
       console.log('The user is ...', authUser);
 
