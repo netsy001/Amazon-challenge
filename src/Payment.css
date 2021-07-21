@@ -1,0 +1,38 @@
+.payment {
+  background-color: white;
+  max-width: 1300px !important;
+  display: flex;
+  justify-content: center;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1300px !important;
+  margin-bottom: 20px;
+}
+
+.payment__container > h1 {
+  text-align: center;
+  padding: 10px;
+  font-weight: 500;
+  background-color: rgb(234, 237, 237);
+  border-bottom: 1px solid lightgray;
+}
+
+.payment__container > h1 a {
+  text-decoration: none;
+}
+
+.payment__section {
+  display: flex;
+  padding: 20px;
+  margin: 0 20px;
+  border-bottom: 1px solid lightgray;
+}
+
+.payment__title {
+  flex: 0.2;
+}
+
+.payment__address,
+.payment__items {
+  flex: 0.8;
+}
