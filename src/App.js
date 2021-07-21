@@ -8,6 +8,11 @@ import Login from './Login';
 import { auth } from './firebase';
 import { useStateValue } from './StateProvider';
 import Payment from './Payment';
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+
+const promise = loadStripe("pk_test_51JFcgMHFvMiG2EjtSAkQEGrQqj3ofHUSQXWB0raPY3rwt7DfH3YJat48WpJVNJzX71nQyBCBcY3AIz7Wgx4hIXSC00N2GGMnT4");
 
 function App() {
   const [{ }, dispatch] = useStateValue();
@@ -37,8 +42,6 @@ function App() {
     //But in array if pass any parameters like user the useEffect runs whenever the user changes, if pass in basket it runs whenever the basket changes...so whatever the we pass in it runs when pass params change.
   }, []);
 
-
-
   return (
     <Router>
       <div className="app">
@@ -52,7 +55,9 @@ function App() {
           </Route>
           <Route path="/payment">
             <Header />
-            <Payment />
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
           </Route>
           <Route path="/">
             <Header />

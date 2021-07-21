@@ -1,12 +1,5 @@
 .payment {
   background-color: white;
-  max-width: 1300px !important;
-  display: flex;
-  justify-content: center;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 1300px !important;
-  margin-bottom: 20px;
 }
 
 .payment__container > h1 {
@@ -33,6 +26,7 @@
 }
 
 .payment__address,
+.payment__details,
 .payment__items {
   flex: 0.8;
 }
