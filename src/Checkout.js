@@ -17,6 +17,7 @@ const Checkout = () => {
                     <div>
                         {/* //option chaining ?. if we get any type error email of null. Optional chaining  adding ? will help to fix the error */}
                         <h3>Hello, {user?.email}</h3>
+                        <h3>Your Shopping Basket</h3>
                         <h2 className="checkout__title">
                             {basket.map(item => <CheckoutProduct
                                 id={item.id}

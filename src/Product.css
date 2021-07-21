@@ -12,6 +12,9 @@
   max-height: 400px;
   min-width: 100px;
 }
+.product:hover {
+  background-color: yellow;
+}
 
 .product > img {
   max-height: 200px;
