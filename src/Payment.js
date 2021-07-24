@@ -71,6 +71,14 @@ function Payment() {
             setProcessing(false);
             // we dont want cx to comeback to payment page after we they press back.
             // we are not using history.push bcz we dont want cx to comeback to payment page if they git back instead we are replacing the page we are swaping the page using replace
+
+
+            // here we are emptying the basket and then redirecting them to the orders page
+            // check reducer.js there we have a case to emptying the basket
+            dispatch({
+                type: 'EMPTY_BASKET'
+            })
+
             history.replace('/orders')
 
         })

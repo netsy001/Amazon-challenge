@@ -19,6 +19,12 @@ const reducer = (state, action) => {
                 basket: [...state.basket, action.item],
             };
 
+        case "EMPTY_BASKET":
+            return {
+                ...state,  // keep the state whatever it is but
+                basket: [] // change the basket to its original empty array.. i.e emptying the basket
+            }
+
         case "REMOVE_FROM_BASKET":
             // here we are geting the state, we r getting basket and using findIndex function. What its doing is going threw all the basket items and checks if any of the basket items id match the action id. Here its just checking if the the id is matching
             const index = state.basket.findIndex((basketItem) => basketItem.id === action.id);
