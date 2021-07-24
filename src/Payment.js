@@ -6,7 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import CurrencyFormat from 'react-currency-format';
 import { getBasketTotal } from './Reducer';
-import { axios } from 'axios';
+import axios from './axios';
 
 function Payment() {
     const [{ basket, user }, dispatch] = useStateValue();
