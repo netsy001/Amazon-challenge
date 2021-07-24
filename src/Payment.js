@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import './Payment.css'
 import { useStateValue } from './StateProvider';
 import CheckoutProduct from './CheckoutProduct';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import CurrencyFormat from 'react-currency-format';
 import { getBasketTotal } from './Reducer';
+import { axios } from 'axios';
 
 function Payment() {
     const [{ basket, user }, dispatch] = useStateValue();
+    const history = useHistory();
 
     const stripe = useStripe();
     const elements = useElements();
@@ -28,8 +30,8 @@ function Payment() {
 
         // But whenever the basket changes we need to get a new secret bcz its not always $50 or always same customer, it will be diff cx and different value so we need new scret for every transaction..... thats the code for useEffect
         const getClientSecret = async () => {
-            // we use axios. Axios is very popular fetching library, fetch post requests, allows us to interact with APIs very easily
             const response = await axios({
+                // we use axios. Axios is very popular fetching library, fetch post requests, allows us to interact with APIs very easily
                 method: "post",
                 // ?total(questionmark total which is called - query param)
                 // Stripe expects the total in a currencies subunits. i.e if u r using the dollars stripe expects the currency to be passed in cents. if rupees in paise.... so we are multiplying by 100.... as $1 = 100 cents
@@ -38,11 +40,14 @@ function Payment() {
             setClientSecret(response.data.clientSecret)
         }
         getClientSecret();
-    }, [basket]);
+    }, [basket])
+
+    console.log('The secret is', clientSecret)
 
     const handleSubmit = async (event) => {
         // all the stripe <stuff className=""></stuff>
-        event.preventDefault(); // stop from refreshing
+        event.preventDefault();
+        // stop from refreshing
         // setProcessing(true);  this will help prevent hiting the enter button more than once.
         //  Bcz in below we have a button disabed to processsing, disabled and successeeded. 
         //  Once hit enter it will be blocked from hitting again.
