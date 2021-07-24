@@ -15,6 +15,8 @@ function Payment() {
 
     const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(true);
+    const [processing, setProcessing] = useState("");
+    const [succeeded, setSucceeded] = useState(false);
 
     const handleSubmit = e => {
         // stripe
@@ -78,6 +80,7 @@ function Payment() {
                                     prefix={"$"}
                                 />
                                 <button disabled={processing || disabled || succeeded}></button>
+                                <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
                             </div>
                         </form>
                     </div>
