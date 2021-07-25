@@ -45,6 +45,7 @@ function Payment() {
     }, [basket])
 
     console.log('The secret is', clientSecret)
+    console.log('The user is', user)
 
     const handleSubmit = async (event) => {
         // all the stripe <stuff className=""></stuff>
@@ -54,8 +55,6 @@ function Payment() {
         //  Bcz in below we have a button disabed to processsing, disabled and successeeded. 
         //  Once hit enter it will be blocked from hitting again.
         setProcessing(true);
-
-
         // confirmCardPayment takes in two arguments 1). clientSecret and 2). an object which is payment_method
         // 1). clientSecret this is how stripe exactly know how much to charge the customer
         // 2). payment_method takes in an object which is the card and get CArdElement using the code elements.getElement(CardElement) 
@@ -71,11 +70,11 @@ function Payment() {
             // this is using a noSQL data struction. collection document data structure. when order comes back successfull we are going to reach to the database collection of the users 
             db.collection('users')
                 // then from collection we are going to users document we are accesing them by  users id
-                .doc(user?.id)
+                .doc(user?.uid)
                 // then inside we are going to the users orders
                 .collection('orders')
                 // then go in to the document and use the paymentIntent id and then going say .set and access basket, amount and created
-                .doc(paymentIntent.uid)
+                .doc(paymentIntent.id)
                 .set({
                     basket: basket,
                     amount: paymentIntent.amount,
@@ -93,11 +92,8 @@ function Payment() {
             dispatch({
                 type: 'EMPTY_BASKET'
             })
-
             history.replace('/orders')
-
         })
-
     }
 
     const handleChange = event => {
