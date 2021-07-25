@@ -7,4 +7,5 @@ const instance = axios.create({
     // "http://localhost:5001/myshop-d68d9/us-central1/API" test link.... the above link is from functions on firebase which is live url
 });
 // the above URL has /API bcz if we check our backend which is functions and index.js we have exports.API 
+// Axios best for APIS
 export default instance;
