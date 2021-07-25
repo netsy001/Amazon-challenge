@@ -2,6 +2,7 @@ import moment from 'moment';
 import React from 'react'
 import CheckoutProduct from './CheckoutProduct';
 import './Order.css';
+import { CurrencyFormat } from 'react-currency-format';
 
 
 // here we are destructuring and pass in prop and say give me the order
@@ -23,6 +24,17 @@ function Order({ order }) {
                     price={item.price}
                     rating={item.rating} />
             ))}
+
+            <CurrencyFormat
+                renderText={(value) => (
+                    <h3 className="order__total">Order Total: {value}</h3>
+                )}
+                decimalScale={2}
+                value={order.data.amount / 100}
+                displayType={"text"}
+                thousandSeparator={true}
+                prefix={"$"}
+            />
         </div>
     )
 }
