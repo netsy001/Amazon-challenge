@@ -75,7 +75,7 @@ function Payment() {
                 // then inside we are going to the users orders
                 .collection('orders')
                 // then go in to the document and use the paymentIntent id and then going say .set and access basket, amount and created
-                .doc(paymentIntent.id)
+                .doc(paymentIntent.uid)
                 .set({
                     basket: basket,
                     amount: paymentIntent.amount,
