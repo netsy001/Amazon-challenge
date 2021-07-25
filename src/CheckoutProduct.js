@@ -3,7 +3,7 @@ import "./CheckoutProduct.css";
 import { useStateValue } from './StateProvider';
 
 
-const CheckoutProduct = ({ id, image, title, price, rating }) => {
+const CheckoutProduct = ({ id, image, title, price, rating, hideButton }) => {
     const [{ basket }, dispatch] = useStateValue(); // this is the we use to pull info or remove info with dispatch. here basket is state where it conatins items.
 
     const removeFromBasket = () => {
@@ -28,7 +28,9 @@ const CheckoutProduct = ({ id, image, title, price, rating }) => {
                 {/* // Array takes in an input basically it takes in an empty input of what ever the value we give to its parameter or call as prop tahn maps threw the loop and fills it  . IF u dont care about whats in the first parameter put an underscore, i is the index*/}
                 <div className="checkoutProduct__rating">{Array(rating).fill().map((_, i) => (<p>⭐</p>))}
                 </div>
-                <button onClick={removeFromBasket}>Remove from Basket</button>
+                {!hideButton && (
+                    <button onClick={removeFromBasket}>Remove from Basket</button>
+                )}
             </div>
         </div>
 
