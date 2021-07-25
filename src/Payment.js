@@ -7,6 +7,8 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import CurrencyFormat from 'react-currency-format';
 import { getBasketTotal } from './Reducer';
 import axios from './axios';
+import { db } from './firebase';
+
 
 function Payment() {
     const [{ basket, user }, dispatch] = useStateValue();
@@ -65,14 +67,27 @@ function Payment() {
             // here we are getting back paymentIntent .. we are destructuring it {paymentIntent}
         }).then(({ paymentIntent }) => {
             // paymentIntent = nothing but payment Confirmation
+
+            // this is using a noSQL data struction. collection document data structure. when order comes back successfull we are going to reach to the database collection of the users 
+            db.collection('users')
+                // then from collection we are going to users document we are accesing them by  users id
+                .doc(user?.id)
+                // then inside we are going to the users orders
+                .collection('orders')
+                // then go in to the document and use the paymentIntent id and then going say .set and access basket, amount and created
+                .doc(paymentIntent.id)
+                .set({
+                    basket: basket,
+                    amount: paymentIntent.amount,
+                    created: paymentIntent.created
+                })
+
             // then we are going to say if everything is good we are going to say as below
             setSucceeded(true);
             setError(null);
             setProcessing(false);
             // we dont want cx to comeback to payment page after we they press back.
             // we are not using history.push bcz we dont want cx to comeback to payment page if they git back instead we are replacing the page we are swaping the page using replace
-
-
             // here we are emptying the basket and then redirecting them to the orders page
             // check reducer.js there we have a case to emptying the basket
             dispatch({
